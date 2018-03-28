@@ -6,4 +6,5 @@
 
 *.ez
 erl_crash.dump
+mix.lock
 plug_metadata_logger-*.tar
