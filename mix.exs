@@ -18,6 +18,6 @@ defmodule PlugMetadataLogger.MixProject do
   end
 
   defp deps do
-    []
+    [{:plug, "~> 1.5"}]
   end
 end

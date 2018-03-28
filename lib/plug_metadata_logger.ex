@@ -1,18 +1,39 @@
 defmodule PlugMetadataLogger do
-  @moduledoc """
-  Documentation for PlugMetadataLogger.
-  """
+  require Logger
 
-  @doc """
-  Hello world.
+  @behaviour Plug
 
-  ## Examples
+  alias Plug.Conn
 
-      iex> PlugMetadataLogger.hello
-      :world
+  def init(opts) do
+    opts
+  end
 
-  """
-  def hello do
-    :world
+  def call(conn, _opts) do
+    req_metadata = [
+      http_method: conn.method,
+      http_path: conn.request_path,
+      http_remote_ip: to_string(:inet.ntoa(conn.remote_ip))
+    ]
+
+    Logger.debug("started", req_metadata)
+
+    start = System.monotonic_time()
+
+    Conn.register_before_send(conn, fn conn ->
+      stop = System.monotonic_time()
+      duration_ms = System.convert_time_unit(stop - start, :native, :millisecond)
+
+      resp_metadata = [
+        http_duration_ms: duration_ms,
+        http_response_body_bytes: IO.iodata_length(conn.resp_body),
+        http_status: conn.status
+      ]
+
+      Logger.debug("completed", resp_metadata)
+
+      Logger.info("completed", req_metadata ++ resp_metadata)
+      conn
+    end)
   end
 end
