@@ -22,7 +22,10 @@ defmodule PlugMetadataLogger.MixProject do
   end
 
   defp deps do
-    [{:plug, "~> 1.5"}]
+    [
+      {:plug, "~> 1.5"},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
+    ]
   end
 
   defp package do
