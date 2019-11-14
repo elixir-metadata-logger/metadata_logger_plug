@@ -1,10 +1,10 @@
-defmodule PlugMetadataLoggerTest do
+defmodule MetadataLogger.PlugTest do
   use ExUnit.Case
   use Plug.Test
 
   import ExUnit.CaptureLog
 
-  doctest PlugMetadataLogger
+  doctest MetadataLogger.Plug
 
   defmodule MetadataFormatter do
     def format(_level, _message, _timestamp, metadata) do
@@ -37,7 +37,7 @@ defmodule PlugMetadataLoggerTest do
   test "metadata in logs" do
     captured =
       capture_log(fn ->
-        :get |> conn("/ping?foo=bar") |> PlugMetadataLogger.call([]) |> send_resp(200, "pong")
+        :get |> conn("/ping?foo=bar") |> MetadataLogger.Plug.call([]) |> send_resp(200, "pong")
       end)
 
     assert captured =~ ~s(http_remote_ip: "127.0.0.1")

@@ -1,9 +1,9 @@
-defmodule PlugMetadataLogger.MixProject do
+defmodule MetadataLogger.Plug.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :plug_metadata_logger,
+      app: :metadata_logger_plug,
       version: "0.1.1-dev",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
@@ -32,9 +32,9 @@ defmodule PlugMetadataLogger.MixProject do
     [
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/chulkilee/plug_metadata_logger",
+        "GitHub" => "https://github.com/elixir-metadata-logger/metadata_logger_plug",
         "Changelog" =>
-          "https://github.com/chulkilee/plug_metadata_logger/blob/master/CHANGELOG.md"
+          "https://github.com/elixir-metadata-logger/metadata_logger_plug/blob/master/CHANGELOG.md"
       },
       maintainers: ["Chulki Lee"]
     ]

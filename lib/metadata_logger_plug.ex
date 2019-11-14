@@ -1,4 +1,4 @@
-defmodule PlugMetadataLogger do
+defmodule MetadataLogger.Plug do
   @moduledoc """
   Plug Middleware to log request and response into in metadata.
 

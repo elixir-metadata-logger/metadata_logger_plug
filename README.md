@@ -1,1 +1,1 @@
-# PlugMetadataLogger
+# MetadataLogger.Plug
